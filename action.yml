@@ -70,14 +70,14 @@ runs:
         python main.py -a
       env:
         PUSHPLUS_TOKEN: ${{ inputs.PUSHPLUS_TOKEN }}
-          Mobile_No: ${{ inputs.Mobile_No }}
-          province_Name: ${{ inputs.province_Name }}
-          city_Name: ${{ inputs.city_Name }}
-          ID_TOKEN: ${{ inputs.ID_TOKEN }}
-          user_Id: ${{ inputs.user_Id }}
-          lat: ${{ inputs.lat }}
-          lng: ${{ inputs.lng }}
-          GP_TOKEN: ${{ inputs.GP_TOKEN }}
+        Mobile_No: ${{ inputs.Mobile_No }}
+        province_Name: ${{ inputs.province_Name }}
+        city_Name: ${{ inputs.city_Name }}
+        ID_TOKEN: ${{ inputs.ID_TOKEN }}
+        user_Id: ${{ inputs.user_Id }}
+        lat: ${{ inputs.lat }}
+        lng: ${{ inputs.lng }}
+        GP_TOKEN: ${{ inputs.GP_TOKEN }}
 
 branding:
     icon: 'check-circle'
