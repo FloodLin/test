@@ -77,6 +77,7 @@ runs:
           user_Id: ${{ inputs.user_Id }}
           lat: ${{ inputs.lat }}
           lng: ${{ inputs.lng }}
+          GP_TOKEN: ${{ inputs.GP_TOKEN }}
 
 branding:
     icon: 'check-circle'
