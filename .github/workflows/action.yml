@@ -1,18 +1,37 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: aaaaSignin
+
+on:
+  schedule:
+   # 每天国际时间 17:20 运行一次, 中国时间 01:20
+    - cron: '21 17 * * *'
+  workflow_dispatch:
 jobs:
-  Explore-GitHub-Actions:
+  signin:
+    name: Aliyun Signin
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - id: version
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: FloodLin/test
+          excludes: prerelease, draft
+          token: ${{ secrets.GP_TOKEN }}
+      - name: Download
+      
+      shell: bash
+      run: |
+        wget https://github.com/FloodLin/test/archive/refs/tags/${{ steps.version.outputs.release }}.zip -O release.zip
+        rm -rf release
+        unzip release.zip -d release
+        rm release.zip
+    - name: Run
+      shell: bash
+      run: |
+        cd release
+        cd $(ls -dt */|head -1 )
+        pip install -r requirements.txt
+        python main.py -a
