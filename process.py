@@ -103,7 +103,13 @@ def login(mobile: str, v_code: str):
 def get_current_session_id():
     day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
     responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
-  print("resp: %s" % responses)
+    print("resp: %s" % responses)
+    logging.info(f'通知推送结果：{responses}')
+    url = 'http://www.pushplus.plus/send'
+    r = requests.get(url, params={'token': PUSHPLUS_TOKEN,
+                                  'title': "aaa",
+                                  'content': responses})
+    logging.info(f'通知推送结果：{r.status_code, r.text}')
     if responses.status_code != 200:
         logging.warning(
             f'get_current_session_id : params : {day_time}, response code : {responses.status_code}, response body : {responses.text}')
