@@ -10,6 +10,26 @@ import config
 #import login
 import process
 
+def get_current_session_id():
+    day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
+    logging.info(f'通知推送结果：{day_time}')
+    responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
+    print("resp: %s" % responses)
+    logging.info(f'通知推送结果：{responses}')
+    url = 'http://www.pushplus.plus/send'
+    r = requests.get(url, params={'token': PUSHPLUS_TOKEN,
+                                  'title': "aaa",
+                                  'content': responses})
+    logging.info(f'通知推送结果：{r.status_code, r.text}')
+    if responses.status_code != 200:
+        logging.warning(
+            f'get_current_session_id : params : {day_time}, response code : {responses.status_code}, response body : {responses.text}')
+      
+
+    #current_session_id = responses.json()['data']['sessionId']
+    #dict.update(headers, {'current_session_id': str(current_session_id)})
+
+
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s  %(filename)s : %(levelname)s  %(message)s',  # 定义输出log的格式
@@ -59,21 +79,3 @@ except BaseException as e:
     print(e)
     logging.error(e)
 
-def get_current_session_id():
-    day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
-    logging.info(f'通知推送结果：{day_time}')
-    responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
-    print("resp: %s" % responses)
-    logging.info(f'通知推送结果：{responses}')
-    url = 'http://www.pushplus.plus/send'
-    r = requests.get(url, params={'token': PUSHPLUS_TOKEN,
-                                  'title': "aaa",
-                                  'content': responses})
-    logging.info(f'通知推送结果：{r.status_code, r.text}')
-    if responses.status_code != 200:
-        logging.warning(
-            f'get_current_session_id : params : {day_time}, response code : {responses.status_code}, response body : {responses.text}')
-      
-
-    #current_session_id = responses.json()['data']['sessionId']
-    #dict.update(headers, {'current_session_id': str(current_session_id)})
