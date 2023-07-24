@@ -106,6 +106,8 @@ def get_current_session_id():
     if responses.status_code != 200:
         logging.warning(
             f'get_current_session_id : params : {day_time}, response code : {responses.status_code}, response body : {responses.text}')
+      
+print("resp: %s" % responses)
     current_session_id = responses.json()['data']['sessionId']
     dict.update(headers, {'current_session_id': str(current_session_id)})
 
