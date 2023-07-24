@@ -102,11 +102,8 @@ def login(mobile: str, v_code: str):
 
 
 def get_current_session_id():
-    today=datetime.date.today()
-    one=datetime.timedelta(hours=8)
-    realtime=today-one
-    day_time = int(time.mktime(realtime.timetuple())) * 1000
-    logging.info(f'day_time: {day_time},today: {today}')
+    day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000 - 8*60*60*1000
+    logging.info(f'day_time: {day_time}')
     responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
     if responses.status_code != 200:
         logging.warning(
