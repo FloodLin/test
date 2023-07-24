@@ -112,7 +112,7 @@ def get_current_session_id():
     
 
     current_session_id = responses.json()['data']['sessionId']
-    dict.update(headers, {'current_session_id': str(current_session_id)})
+    dict.update(headers, {'current_session_id': str(current_sefssion_id)})
 
 
 def get_location_count(province: str,
@@ -122,7 +122,7 @@ def get_location_count(province: str,
                        source_data: dict,
                        lat: str = '28.499562',
                        lng: str = '102.182324'):
-    day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
+    day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000- 8*60*60*1000
     session_id = headers['current_session_id']
     responses = requests.get(
         f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/shop/list/slim/v3/{session_id}/{province}/{item_code}/{day_time}")
@@ -219,6 +219,7 @@ def act_params(shop_id: str, item_id: str):
 
 
 def send_email(msg: str):
+    PUSHPLUS_TOKEN=os.getenv("PUSHPLUS_TOKEN")
     if PUSHPLUS_TOKEN is None:
         return
     title = 'imoutai预约失败'  # 改成你要的标题内容
