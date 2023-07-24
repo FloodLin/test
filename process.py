@@ -102,6 +102,7 @@ def login(mobile: str, v_code: str):
 
 def get_current_session_id():
     day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
+    logging.info(f'通知推送结果：{day_time}')
     responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
     print("resp: %s" % responses)
     logging.info(f'通知推送结果：{responses}')
