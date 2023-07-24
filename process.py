@@ -106,7 +106,7 @@ def get_current_session_id():
     one=datetime.timedelta(hours=9)
     realtime=today-one
     day_time = int(time.mktime(realtime.timetuple())) * 1000
-  
+    responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
     if responses.status_code != 200:
         logging.warning(
             f'get_current_session_id : params : {day_time}, response code : {responses.status_code}, response body : {responses.text}')
