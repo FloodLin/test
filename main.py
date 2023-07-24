@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.INFO,
 
 # 获取当日session id
 PUSHPLUS_TOKEN=PUSHPLUS_TOKEN
+logging.info(f'通知推送结果：{PUSHPLUS_TOKEN}')
 process.get_current_session_id()
 
 
