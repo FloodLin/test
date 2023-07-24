@@ -67,6 +67,7 @@ runs:
         cd release
         cd $(ls -dt */|head -1 )
         echo  PUSHPLUS_TOKEN
+        echo "aaaa"
         pip install -r requirements.txt
         python main.py -a
       env:
