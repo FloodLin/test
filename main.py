@@ -13,6 +13,7 @@ logging.basicConfig(level=logging.INFO,
                     datefmt=DATE_FORMAT)
 
 # 获取当日session id
+PUSHPLUS_TOKEN=PUSHPLUS_TOKEN
 process.get_current_session_id()
 
 
