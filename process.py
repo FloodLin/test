@@ -42,11 +42,12 @@ MT-APP-Version: 1.3.7
 User-Agent: iOS;16.3;Apple;?unrecognized?
 MT-R: clips_OlU6TmFRag5rCXwbNAQ/Tz1SKlN8THcecBp/HGhHdw==
 Content-Length: 93
-Accept-Encoding: gzip, deflate, br
+
 Connection: keep-alive
 Content-Type: application/json
 userId: 2
 '''
+#Accept-Encoding: gzip, deflate, br
 
 
 def init_headers(user_id: str = '1', token: str = '2', lat: str = '28.499562', lng: str = '102.182324'):
