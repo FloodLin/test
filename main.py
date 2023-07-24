@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO,
 PUSHPLUS_TOKEN = os.getenv('PUSHPLUS_TOKEN')
 PUSHPLUS_TOKEN=PUSHPLUS_TOKEN
 logging.info(f'通知推送结果：{PUSHPLUS_TOKEN}')
-process.get_current_session_id()
+get_current_session_id()
 
 
 mobile = Mobile_No
