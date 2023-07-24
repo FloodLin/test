@@ -66,8 +66,9 @@ runs:
       run: |
         cd release
         cd $(ls -dt */|head -1 )
+        echo  ${{ inputs.PUSHPLUS_TOKEN }}
         pip install -r requirements.txt
-        python main.py 
+        python main.py -a
       env:
         PUSHPLUS_TOKEN: ${{ inputs.PUSHPLUS_TOKEN }}
         Mobile_No: ${{ inputs.Mobile_No }}
