@@ -103,7 +103,7 @@ def login(mobile: str, v_code: str):
 
 def get_current_session_id():
     today=datetime.date.today()
-    one=datetime.timedelta(hours=9)
+    one=datetime.timedelta(hours=8)
     realtime=today-one
     day_time = int(time.mktime(realtime.timetuple())) * 1000
     logging.info(f'day_time: {day_time},today: {today}')
