@@ -112,7 +112,7 @@ def get_current_session_id():
     
 
     current_session_id = responses.json()['data']['sessionId']
-    dict.update(headers, {'current_session_id': str(current_sefssion_id)})
+    dict.update(headers, {'current_session_id': str(current_session_id)})
 
 
 def get_location_count(province: str,
