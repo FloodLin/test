@@ -42,12 +42,12 @@ MT-APP-Version: 1.3.7
 User-Agent: iOS;16.3;Apple;?unrecognized?
 MT-R: clips_OlU6TmFRag5rCXwbNAQ/Tz1SKlN8THcecBp/HGhHdw==
 Content-Length: 93
-
+Accept-Encoding: gzip, deflate, br
 Connection: keep-alive
 Content-Type: application/json
 userId: 2
 '''
-#Accept-Encoding: gzip, deflate, br
+
 
 
 def init_headers(user_id: str = '1', token: str = '2', lat: str = '28.499562', lng: str = '102.182324'):
@@ -102,23 +102,18 @@ def login(mobile: str, v_code: str):
 
 
 def get_current_session_id():
-    day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
-    logging.info(f'通知推送结果：{day_time}')
-    responses = requests.get(f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/index/session/get/{day_time}")
-    print("resp: %s" % responses)
-    logging.info(f'通知推送结果：{responses}')
-    url = 'http://www.pushplus.plus/send'
-    r = requests.get(url, params={'token': PUSHPLUS_TOKEN,
-                                  'title': "aaa",
-                                  'content': responses})
-    logging.info(f'通知推送结果：{r.status_code, r.text}')
+    today=datetime.date.today()
+    one=datetime.timedelta(hours=9)
+    realtime=today-one
+    day_time = int(time.mktime(realtime.timetuple())) * 1000
+  
     if responses.status_code != 200:
         logging.warning(
             f'get_current_session_id : params : {day_time}, response code : {responses.status_code}, response body : {responses.text}')
       
 
-    #current_session_id = responses.json()['data']['sessionId']
-    #dict.update(headers, {'current_session_id': str(current_session_id)})
+    current_session_id = responses.json()['data']['sessionId']
+    dict.update(headers, {'current_session_id': str(current_session_id)})
 
 
 def get_location_count(province: str,
