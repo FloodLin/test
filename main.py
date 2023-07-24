@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import logging
 import sys
+import os
 
 import config
 #import login
@@ -13,6 +14,7 @@ logging.basicConfig(level=logging.INFO,
                     datefmt=DATE_FORMAT)
 
 # 获取当日session id
+PUSHPLUS_TOKEN = os.getenv('PUSHPLUS_TOKEN')
 PUSHPLUS_TOKEN=PUSHPLUS_TOKEN
 logging.info(f'通知推送结果：{PUSHPLUS_TOKEN}')
 process.get_current_session_id()
