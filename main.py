@@ -20,11 +20,13 @@ logging.basicConfig(level=logging.INFO,
 process.get_current_session_id()
 
 
-mobile = Mobile_No
-province = province_Name
-city = city_Name
-token = ID_TOKEN
-userId = user_Id
+mobile = os.getenv('Mobile_No')
+province = os.getenv('province_Name')
+city = os.getenv('city_Name')
+token = os.getenv('ID_TOKEN')
+userId = os.getenv('user_Id')
+lat=os.getenv("lat")
+lng=os.getenv("lng")
 
 
 p_c_map, source_data = process.get_map(lat=lat, lng=lng)
