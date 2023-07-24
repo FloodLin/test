@@ -27,6 +27,7 @@ p_c_map, source_data = process.get_map(lat=lat, lng=lng)
 
 process.UserId = userId
 process.TOKEN = token
+process.mobile =mobile
 process.init_headers(user_id=userId, token=token, lng=lng, lat=lat)
 # 根据配置中，要预约的商品ID，城市 进行自动预约
 try:
