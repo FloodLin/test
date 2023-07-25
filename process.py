@@ -226,7 +226,7 @@ def send_email(msg: str):
     PUSHPLUS_TOKEN=os.getenv("PUSHPLUS_TOKEN")
     if PUSHPLUS_TOKEN is None:
         return
-    title = 'imoutai预约失败'  # 改成你要的标题内容
+    title = 'imoutai预约结果'  # 改成你要的标题内容
     content = msg  # 改成你要的正文内容
     url = 'http://www.pushplus.plus/send'
     r = requests.get(url, params={'token': PUSHPLUS_TOKEN,
@@ -247,6 +247,7 @@ def reservation(params: dict, mobile: str):
         raise RuntimeError
     logging.info(
         f'预约 : mobile:{mobile} :  response code : {responses.status_code}, response body : {responses.text}')
+    send_email( f'预约 : mobile:{mobile} :  response code : {responses.status_code}, response body : {responses.text}')
 
 
 def select_geo(i: str):
