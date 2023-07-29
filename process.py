@@ -8,6 +8,7 @@ import config
 from encrypt import Encrypt
 import requests
 import hashlib
+imoprt os
 
 import logging
 
