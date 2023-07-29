@@ -7,7 +7,7 @@ ITEM_MAP = {
 
 # 需要预约的商品(默认只预约2个兔茅)
 ########################
-ITEM_CODES = ['10213', '10214', '2478']
+ITEM_CODES = ['10213', '10214']
 
 # push plus 微信推送,具体使用参考  https://www.pushplus.plus
 # 例如： PUSH_TOKEN = '123456'
